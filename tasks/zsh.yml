@@ -27,7 +27,7 @@
     dest: "{{ lookup('env', 'HOME') }}.config/zsh"
     tags:
       - zsh
-- name: Ensure correct permissions
+- name: Ensure correct permissions of zsh directory
   ansible.builtin.file:
     src: $HOME/.config/zsh
     owner: tommaso
