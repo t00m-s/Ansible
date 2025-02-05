@@ -1,0 +1,50 @@
+- name: Install git
+  community.general.pacman:
+    name: git
+    state: present
+    tags:
+      - zsh
+- name: Install zsh
+  community.general.pacman:
+    name: zsh
+    state: present
+    tags:
+      - zsh
+- name: Change default shell
+  shell: chsh -s `which zsh`
+  tags:
+    - zsh
+- name: Create .config directory if it does not exist
+  ansible.builtin.file:
+    path: "{{ lookup('env', 'HOME') }}/.config"
+    state: directory
+    mode: '0755'
+    tags:
+      - zsh
+- name: Clone ZSH repository
+  ansible.builtin.git:
+    repo: 'git@github.com:t00m-s/zsh.git'
+    dest: "{{ lookup('env', 'HOME') }}.config/zsh"
+    tags:
+      - zsh
+- name: Ensure correct permissions
+  ansible.builtin.file:
+    src: $HOME/.config/zsh
+    owner: tommaso
+    group: tommaso
+    mode: '0644'
+    tags:
+      - zsh
+- name: Symlink .zshrc
+  ansible.builtin.file:
+    src: "{{ lookup('ENV', 'HOME') }}/.config/zsh/.zshrc"
+    dest: "{{ lookup('ENV', 'HOME') }}/.zshrc"
+    owner: tommaso
+    group: tommaso
+    state: link
+    tags:
+      - zsh
+- name: Install plugins and reload zsh shell
+  ansible.builtin.shell: exec zsh
+  tags:
+    - zsh
