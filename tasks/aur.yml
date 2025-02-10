@@ -1,0 +1,19 @@
+- name: Install base-devel (if not present already)
+  community.general.pacman:
+    name: base-devel
+    state: present
+- name: Install git
+  community.general.pacman:
+    name: git
+    state: present
+- name: Install rust
+  community.general.pacman:
+    name: rust
+    state: present
+- name: Git clone AUR helper (paru)
+  ansible.builtin.git:
+  repo: "https://aur.archlinux.org/paru.git"
+  dest: /tmp/paru
+  clone: yes
+- name: Install AUR helper (paru)
+  ansible.builtin.shell: cd /tmp/paru && makepkg -si

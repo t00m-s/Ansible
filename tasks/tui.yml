@@ -1,0 +1,24 @@
+- name: Install git
+  community.general.pacman:
+    name: git
+    state: present
+- name: Ensure base-devel is installed
+  community.general.pacman:
+    name: base-devel
+    state: present
+- name: Install zoxide
+  community.general.pacman:
+    name: zoxide
+    state: present
+- name: Install eza
+  community.general.pacman:
+    name: eza
+    state: present
+- name: Install neovim
+  community.general.pacman:
+    name: neovim
+    state: present
+- name: Install docker
+  community.general.pacman:
+    name: docker
+    state: present
