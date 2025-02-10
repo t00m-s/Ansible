@@ -1,0 +1,12 @@
+- name: Install dunst notification daemon
+  community.general.pacman:
+    name: dunst
+    state: present
+- name: Install hyprland
+  community.general.pacman:
+    name: hyprland
+    state: present
+- name: Install kitty terminal
+  community.general.pacman:
+    name: kitty
+    state: present

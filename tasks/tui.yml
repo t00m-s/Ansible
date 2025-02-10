@@ -22,3 +22,11 @@
   community.general.pacman:
     name: docker
     state: present
+- name: Install bat
+  community.general.pacman:
+    name: bat
+    state: present
+- name: Install lazygit
+  community.general.pacman:
+    name: lazygit
+    state: present
