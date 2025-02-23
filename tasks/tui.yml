@@ -14,10 +14,13 @@
   community.general.pacman:
     name: eza
     state: present
-- name: Install neovim
+- name: Install bob
   community.general.pacman:
-    name: neovim
+    name: bob
     state: present
+- name: Install neovim from bob
+  ansible.builtin.shell: |
+    /usr/bin/bob use stable
 - name: Install docker
   community.general.pacman:
     name: docker
@@ -29,4 +32,8 @@
 - name: Install lazygit
   community.general.pacman:
     name: lazygit
+    state: present
+- name: Install delta
+  community.general.pacman:
+    name: git-delta
     state: present
